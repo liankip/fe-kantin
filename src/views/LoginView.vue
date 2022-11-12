@@ -1,9 +1,31 @@
 <template>
   <div>
     <form @submit.prevent="userLogin" @keyup.enter="submit">
-      <input type="text" name="email" v-model="form.username">
-      <input type="password" name="password" v-model="form.password">
-      <button type="submit">Masuk</button>
+      <div class="field">
+        <label class="label">Username</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input is-success" type="text" placeholder="Username" v-model="form.username">
+          <span class="icon is-small is-left">
+            <i class="fas fa-user"></i>
+          </span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Pasword</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input is-success" type="password" placeholder="Password" v-model="form.password">
+          <span class="icon is-small is-left">
+          <i class="fas fa-key"></i>
+        </span>
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="button is-success is-fullwidth" type="submit">Masuk</button>
+      </div>
+      <p class="subtitle has-text-centered">atau</p>
+      <div class="buttons">
+        <button @click="$router.push('/register')" class="button is-success is-fullwidth" type="submit">Daftar</button>
+      </div>
     </form>
   </div>
 </template>
@@ -21,12 +43,14 @@ export default {
     }
   },
   methods: {
-    userLogin () {
+    userLogin() {
       axios.post('http://localhost:3000/users/login', this.form).then(Res => {
-        // this.$router.push({name: 'dashboard'})
-        console.log(Res)
+        if (Res.data['data'] !== null) {
+          this.$router.push({name: 'dashboard'})
+          localStorage.setItem('config', JSON.stringify(Res.data['data']));
+        }
       }).catch(Err => {
-        console.log(Err.response.data.error)
+        console.log(Err.response.data)
       })
     }
   }
