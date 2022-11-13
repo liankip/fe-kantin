@@ -6,13 +6,20 @@
           <img :src="food.foto" alt="">
         </div>
         <div class="card-content">
-          <router-link class="title is-size-5" :to="'/food-detail/' + food.id">{{food.nama}}</router-link>
+          <router-link class="title is-size-5" :to="'/food-detail/' + food.id">{{ food.nama }}</router-link>
           <br>
           <p class="subtitle">{{ currency(food.harga) }} <span class="tag is-danger">{{ food.promo }}%</span></p>
         </div>
-        <footer v-if="user.roles == 1" class="card-footer">
+        <footer v-if="user.roles === 1" class="card-footer">
           <p class="card-footer-item">
-            <router-link class="has-text-warning is-outlined is-pulled-left is-small" :to="'/food-edit/' + food.id">Ubah</router-link>
+            <router-link class="has-text-warning is-outlined is-pulled-left is-small" :to="'/food-edit/' + food.id">
+              Ubah
+            </router-link>
+          </p>
+          <p class="card-footer-item">
+            <a type="submit" class="has-text-danger is-outlined is-pulled-left is-small"
+                    @click="deleteFood(food.id)">Hapus
+            </a>
           </p>
         </footer>
       </div>
@@ -39,6 +46,11 @@ export default {
         this.foods = Res.data['data']
       }).catch(Err => {
         console.log(Err.message)
+      })
+    },
+    deleteFood(id) {
+      axios.delete(`http://localhost:3000/foods/${id}`).then(Res => {
+        this.foods = this.foods.filter(foods => foods.id !== id)
       })
     },
     currency(value) {
