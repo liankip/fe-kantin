@@ -5,35 +5,34 @@
         <div class="field">
           <label class="label">Nama</label>
           <div class="control">
-            <input class="input is-success" type="text" placeholder="Nama" v-model="form.nama">
+            <input class="input is-success" type="text" placeholder="Nama" v-model="food.nama">
           </div>
         </div>
         <div class="field">
           <label class="label">Foto</label>
           <div class="control">
-            <input class="input is-success" type="text" placeholder="Foto" v-model="form.foto">
+            <input class="input is-success" type="text" placeholder="Foto" v-model="food.foto">
           </div>
         </div>
         <div class="field">
           <label class="label">Harga</label>
           <div class="control">
-            <input class="input is-success" type="text" placeholder="Harga" v-model="form.harga">
+            <input class="input is-success" type="text" placeholder="Harga" v-model="food.harga">
           </div>
         </div>
         <div class="field">
           <label class="label">Promo</label>
           <div class="control">
-            <input class="input is-success" type="text" placeholder="Promo" v-model="form.promo">
+            <input class="input is-success" type="text" placeholder="Promo" v-model="food.promo">
           </div>
         </div>
         <div class="field">
           <label class="label">Deskripsi</label>
           <div class="control">
             <textarea class="textarea is-success" type="text" placeholder="Deskripsi"
-                      v-model="form.deskripsi"></textarea>
+                      v-model="food.deskripsi"></textarea>
           </div>
         </div>
-        <input type="hidden" v-model="form.userid">
         <div class="buttons">
           <button class="button is-success is-fullwidth" type="submit">Simpan</button>
         </div>
@@ -48,22 +47,12 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      form: {
-        userid: '',
-        foto: '',
-        nama: '',
-        harga: '',
-        promo: '',
-        deskripsi: ''
-      },
+      food: {}
     }
   },
   methods: {
     foodAdd() {
-      const user = JSON.parse(localStorage.getItem('user'))
-      this.form.userid = user.id
-
-      axios.post('http://localhost:3000/foods/', this.form).then(Res => {
+      axios.put(`http://localhost:3000/foods/${this.$route.params.id}`, this.food).then(Res => {
         if (Res.data['data'] !== null) {
           this.$router.push({name: 'dashboard'})
         }
@@ -72,5 +61,12 @@ export default {
       })
     }
   },
+  mounted() {
+    axios.get(`http://localhost:3000/foods/${this.$route.params.id}`).then(Res => {
+      this.food = Res.data['data']
+    }).catch(Err => {
+      console.log(Err.message)
+    })
+  }
 }
 </script>

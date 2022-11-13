@@ -2,6 +2,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 import DashboardView from '../views/DashboardView.vue'
 import FoodDetailView from '../views/FoodDetailView.vue'
 import FoodAddView from "@/views/FoodAddView.vue";
+import FoodEditView from "@/views/FoodEditView.vue";
 
 import LoginView from '../views/LoginView.vue';
 import RegisterView from '../views/RegisterView.vue'
@@ -34,6 +35,11 @@ const router = createRouter({
             path: '/food-add',
             name: 'food-add',
             component: FoodAddView
+        },
+        {
+            path: '/food-edit/:id',
+            name: 'food-edit',
+            component: FoodEditView
         }
     ]
 })
