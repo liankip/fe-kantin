@@ -1,6 +1,7 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import DashboardView from '../views/DashboardView.vue'
 import FoodDetailView from '../views/FoodDetailView.vue'
+import FoodAddView from "@/views/FoodAddView.vue";
 
 import LoginView from '../views/LoginView.vue';
 import RegisterView from '../views/RegisterView.vue'
@@ -28,6 +29,11 @@ const router = createRouter({
             name: 'food-detail',
             component: FoodDetailView,
             props: true
+        },
+        {
+            path: '/food-add',
+            name: 'food-add',
+            component: FoodAddView
         }
     ]
 })
