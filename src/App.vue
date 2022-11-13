@@ -15,7 +15,7 @@ export default {
 <template>
   <section class="section is-hidden-mobile">
     <div class="container" id="app">
-      <nav class="navbar has-shadow is-white">
+      <nav v-if="user !== null" class="navbar has-shadow is-white">
         <div class="navbar-brand">
           <a class="navbar-burger" id="burger">
             <span></span>
@@ -25,7 +25,7 @@ export default {
         </div>
         <div v-if="user.roles === 1" class="navbar-menu" id="nav-links">
           <div class="navbar-end">
-            <a class="navbar-item">Tambah Menu</a>
+            <a class="navbar-item" href="/food-add">Tambah Menu</a>
             <a class="navbar-item">Hasil Transaksi</a>
             <a class="navbar-item">Hasil Review</a>
           </div>
