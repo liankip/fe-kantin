@@ -40,7 +40,7 @@ const router = createRouter({
             path: '/food-edit/:id',
             name: 'food-edit',
             component: FoodEditView
-        }
+        },
     ]
 })
 
