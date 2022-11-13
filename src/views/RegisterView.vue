@@ -73,7 +73,7 @@ export default {
       axios.post('http://localhost:3000/users/register', this.form).then(Res => {
         if (Res.data['data'] !== null) {
           this.$router.push({name: 'dashboard'})
-          localStorage.setItem('config', JSON.stringify(Res.data['data']));
+          localStorage.setItem('user', JSON.stringify(Res.data['data']));
         }
       }).catch(Err => {
         console.log(Err.response.data)
