@@ -27,7 +27,7 @@ export default {
           <div class="navbar-end">
             <a class="navbar-item" href="/food-add">Tambah Menu</a>
             <a class="navbar-item">Hasil Transaksi</a>
-            <a class="navbar-item">Hasil Review</a>
+            <a class="navbar-item" href="/reviews">Hasil Review</a>
           </div>
         </div>
         <div v-else class="navbar-menu" id="nav-links">

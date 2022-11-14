@@ -4,6 +4,8 @@ import FoodDetailView from '../views/FoodDetailView.vue'
 import FoodAddView from "@/views/FoodAddView.vue";
 import FoodEditView from "@/views/FoodEditView.vue";
 
+import HasilReviewView from '@/views/HasilReviewView.vue'
+
 import LoginView from '../views/LoginView.vue';
 import RegisterView from '../views/RegisterView.vue'
 
@@ -41,6 +43,11 @@ const router = createRouter({
             name: 'food-edit',
             component: FoodEditView
         },
+        {
+            path: '/reviews',
+            name: 'reviews',
+            component: HasilReviewView
+        }
     ]
 })
 
