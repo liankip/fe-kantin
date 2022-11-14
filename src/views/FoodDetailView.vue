@@ -12,6 +12,7 @@
         <div class="column is-4">
           <div class="is-size-4 mb-4">{{ currency(food.harga) }} <span class="tag is-danger">{{ food.promo }}%</span></div>
           <p class="mb-4">{{ food.deskripsi }}</p>
+          <p class="subtitle">Rating: {{ food.rating }}</p>
           <button class="button is-primary" onclick="return false;">
             Pesan
           </button>
@@ -35,7 +36,7 @@ export default {
       const user = JSON.parse(localStorage.getItem('user'));
 
       axios.get(`http://localhost:3000/foods/${this.$route.params.id}`).then(Res => {
-        this.food = Res.data['data']
+        this.food = Res.data['data'][0]
       }).catch(Err => {
         console.log(Err.message)
       })

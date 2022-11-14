@@ -9,6 +9,7 @@
           <router-link class="title is-size-5" :to="'/food-detail/' + food.id">{{ food.nama }}</router-link>
           <br>
           <p class="subtitle">{{ currency(food.harga) }} <span class="tag is-danger">{{ food.promo }}%</span></p>
+          <p class="subtitle">Rating {{ food.rating }}</p>
         </div>
         <footer v-if="user.roles === 1" class="card-footer">
           <p class="card-footer-item">
